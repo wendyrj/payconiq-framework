@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Payconiq" parallel="classes" thread-count="4">
+    <listeners>
+        <listener class-name="listeners.TestNGListener"></listener>
+        <listener class-name="listeners.TestNGReporter"></listener>
+    </listeners>
+
+    <test name="Regression API">
+        <classes>
+            <class name="platform.api.tests.CreateGistTests"></class>
+            <class name="platform.api.tests.DeleteGistTests"></class>
+            <class name="platform.api.tests.EditGistTests"></class>
+            <class name="platform.api.tests.ReadGistTests"></class>
+        </classes>
+    </test>
+</suite>
