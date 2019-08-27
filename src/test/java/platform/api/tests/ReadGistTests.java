@@ -55,13 +55,11 @@ public class ReadGistTests extends BaseAPITest {
         Gist[] responseGists = readGistAction.executeGetPublicGists();
         Logger.addStep("Public Gists information read from a total of " + responseGists.length + " gists");
 
-        for (int i = 0; i < responseGists.length; i++) {
-            Assert.assertTrue(responseGists[i].isPublicField());
-        }
+        gistMacro.checkGistIsPublicField(responseGists);
         Logger.addStep("Validated that all the obtained gists are public");
     }
 
-    @Test(priority = 4, description = "Test the read operation of all the Gists by username")
+    @Test(priority = 4, description = "Test the read operation of all the Gists by username from a user with Gists created")
     public void getGistsByUsername() {
         responseSpecBuilder.expectStatusCode(200)
                 .expectHeader("Cache-Control", containsString("private"))

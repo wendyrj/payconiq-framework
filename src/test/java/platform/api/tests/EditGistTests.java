@@ -8,7 +8,6 @@ import testObjects.GistFile;
 import utils.Logger;
 import utils.RandomUtils;
 
-import java.util.Iterator;
 import java.util.Map;
 
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
@@ -31,15 +30,8 @@ public class EditGistTests extends BaseAPITest {
                 .expectBody(matchesJsonSchemaInClasspath("postResponse.json"));
 
         Gist responseGist = editGistAction.executePatchUpdateGistById(gistCreated);
-
         Assert.assertEquals(gistCreated.getDescription(), responseGist.getDescription());
-
-        Iterator<GistFile> iterator = createdGistFilesMap.values().iterator();
-        Map<String, GistFile> files = responseGist.getFiles();
-        while(iterator.hasNext()){
-            GistFile createdGistFile = iterator.next();
-            Assert.assertTrue(files.containsValue(createdGistFile));
-        }
-        Logger.addStep("Validated description and files updated successfully ");
+        gistMacro.checkGistFileUpdate(createdGistFilesMap, responseGist.getFiles());
+        Logger.addStep("Validated description and files updated successfully");
     }
 }
