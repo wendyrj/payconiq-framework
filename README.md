@@ -13,15 +13,19 @@ Gist API documentation is available at [this link](https://developer.github.com/
 - Rest Assured 4.0.0
 
 ## How to run
+*Preconditions*
+- You will need an account in GitHub.
+- You will need to create an [OAuth token]. (https://github.com/settings/tokens)
+- You will need to update the Config.java class (src/test/java/testData/Config.java) with the previusly created username and token the values for variables "AUTHORIZATION" and "USERNAME".
+
+*How to run*
 ```
 mvn clean install
 ```
-
 *Run all the tests*
 ```
 mvn clean test
 ```
-
 *Run an specific test class*
 ```
 mvn -Dtest=ReadGistTests test
